@@ -22,6 +22,10 @@ const componentList: componentListType[] = [
     name: "Swipe Button",
     path: "swipe-button",
   },
+  {
+    name: "Arc Slider",
+    path: "arc-slider",
+  },
 ];
 
 type MainScreenProps = NativeStackScreenProps<RootStackParamList, "Main">;
@@ -43,7 +47,11 @@ const Main = ({ navigation }: MainScreenProps) => {
               <Text style={{ color: index % 2 === 0 ? "#1B2430" : "#D6D5A8" }}>
                 {item.name}
               </Text>
-              <AntDesign name="arrowright" size={24} color="black" />
+              <AntDesign
+                name="arrowright"
+                size={24}
+                color={index % 2 === 0 ? "#1B2430" : "#D6D5A8"}
+              />
             </View>
           </Pressable>
         )}

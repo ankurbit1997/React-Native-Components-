@@ -5,6 +5,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import Main from "./screens/Main";
 import { RootStackParamList } from "./types";
 import SwipeScreen from "./screens/SwipeButton";
+import ArcSliderScreen from "./screens/ArcSlider";
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -21,6 +22,11 @@ export default function App() {
           options={{ title: "Swipe Button", headerBackTitleVisible: false }}
           name="swipe-button"
           component={SwipeScreen}
+        />
+        <Stack.Screen
+          options={{ title: "Arc Slider", headerBackTitleVisible: false }}
+          name="arc-slider"
+          component={ArcSliderScreen}
         />
       </Stack.Navigator>
     </NavigationContainer>

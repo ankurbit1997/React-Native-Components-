@@ -69,12 +69,12 @@ const Component = ({ onComplete }: ComponentProps) => {
       }
     },
 
-    onEnd: () => {
+    onFinish: () => {
       if (translationX.value < CONTAINER_WIDTH / 2 - SWIPEABLE_DIMENSIONS / 2) {
-        translationX.value = withTiming(0, { duration: 350 });
+        translationX.value = withSpring(0);
         runOnJS(handleComplete)(false);
       } else {
-        translationX.value = withTiming(H_SWIPE_RANGE, { duration: 350 });
+        translationX.value = withSpring(H_SWIPE_RANGE);
         runOnJS(handleComplete)(true);
       }
     },
@@ -84,7 +84,7 @@ const Component = ({ onComplete }: ComponentProps) => {
     const rotate = interpolate(
       translationX.value,
       [0, H_SWIPE_RANGE],
-      [-180, 0],
+      [0, 180],
       Extrapolate.CLAMP
     );
 
