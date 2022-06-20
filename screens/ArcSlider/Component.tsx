@@ -48,9 +48,10 @@ type SliderProps = {
   progress: number;
   onChange: React.Dispatch<React.SetStateAction<number>>;
   limit: number;
+  daysSlid: number;
 };
 
-const Component = ({ progress, onChange, limit }: SliderProps) => {
+const Component = ({ progress, onChange, limit, daysSlid }: SliderProps) => {
   //arc start and end value
   const start = useSharedValue(1.25 * Math.PI);
   const end = useSharedValue(1.75 * Math.PI);
@@ -181,9 +182,9 @@ const Component = ({ progress, onChange, limit }: SliderProps) => {
 
   // partition start value
   const partitionStart = useSharedValue<number>(
-    getPosFromProgess(limit - 0.45)
+    getPosFromProgess(limit - 0.27)
   );
-  const partitionEnd = useSharedValue<number>(getPosFromProgess(limit + 0.45));
+  const partitionEnd = useSharedValue<number>(getPosFromProgess(limit + 0.27));
   // partition startpos pos
   const partitionStartPos = useDerivedValue(() =>
     polar2Canvas({ theta: partitionStart.value, radius: R }, CENTER)
@@ -240,7 +241,7 @@ const Component = ({ progress, onChange, limit }: SliderProps) => {
       </Svg>
       <PanGestureHandler onGestureEvent={handleCursorDrag}>
         <Animated.View style={[thumbStyle.view, cursorStyle]}>
-          <Text style={thumbStyle.text}>{progress}</Text>
+          <Text style={thumbStyle.text}>{daysSlid}</Text>
         </Animated.View>
       </PanGestureHandler>
     </View>
