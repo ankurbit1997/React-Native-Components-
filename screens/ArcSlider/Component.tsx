@@ -28,6 +28,7 @@ import {
   SIZE,
   STROKE,
   getPosFromProgess,
+  THUMB_SIZE,
 } from "./Constants";
 import { canvas2Polar, polar2Canvas } from "react-native-redash";
 import {
@@ -194,8 +195,8 @@ const Component = ({ progress, onChange, limit }: SliderProps) => {
   const cursorStyle = useAnimatedStyle(() => {
     return {
       transform: [
-        { translateX: translateX.value - 55 / 2 },
-        { translateY: translateY.value - 55 / 2 },
+        { translateX: translateX.value - THUMB_SIZE / 2 },
+        { translateY: translateY.value - THUMB_SIZE / 2 },
       ],
       position: "absolute",
     };
@@ -250,10 +251,10 @@ export default Component;
 
 const thumbStyle = StyleSheet.create({
   view: {
-    height: 55,
-    width: 55,
+    height: THUMB_SIZE,
+    width: THUMB_SIZE,
     backgroundColor: "white",
-    borderRadius: 55,
+    borderRadius: THUMB_SIZE,
     borderWidth: 2.5,
     borderColor: "#27ABA7",
     top: 10,
