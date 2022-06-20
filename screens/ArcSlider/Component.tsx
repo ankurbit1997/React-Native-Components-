@@ -49,9 +49,18 @@ type SliderProps = {
   onChange: React.Dispatch<React.SetStateAction<number>>;
   limit: number;
   daysSlid: number;
+  currentMonth: string;
+  notAvailToday: boolean;
 };
 
-const Component = ({ progress, onChange, limit, daysSlid }: SliderProps) => {
+const Component = ({
+  progress,
+  onChange,
+  limit,
+  daysSlid,
+  currentMonth,
+  notAvailToday,
+}: SliderProps) => {
   //arc start and end value
   const start = useSharedValue(1.25 * Math.PI);
   const end = useSharedValue(1.75 * Math.PI);
@@ -176,7 +185,7 @@ const Component = ({ progress, onChange, limit, daysSlid }: SliderProps) => {
   const animatedPropsDisabled = useAnimatedProps(() => {
     return {
       d: `M ${disabledStartPos.value.x} ${disabledStartPos.value.y} A ${R} ${R} 0 0 1 ${translateX.value} ${translateY.value} `,
-      strokeWidth: progress > limit ? STROKE : 0,
+      strokeWidth: notAvailToday ? STROKE : 0,
     };
   });
 
@@ -241,6 +250,7 @@ const Component = ({ progress, onChange, limit, daysSlid }: SliderProps) => {
       </Svg>
       <PanGestureHandler onGestureEvent={handleCursorDrag}>
         <Animated.View style={[thumbStyle.view, cursorStyle]}>
+          <Text style={thumbStyle.subText}>{currentMonth}</Text>
           <Text style={thumbStyle.text}>{daysSlid}</Text>
         </Animated.View>
       </PanGestureHandler>
@@ -266,7 +276,12 @@ const thumbStyle = StyleSheet.create({
     elevation: 2,
   },
   text: {
-    fontSize: 18,
+    fontSize: 16,
+    fontWeight: "500",
+    color: "#9E9E9E",
+  },
+  subText: {
+    fontSize: 12,
     fontWeight: "500",
     color: "#9E9E9E",
   },

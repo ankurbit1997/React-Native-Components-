@@ -14,9 +14,13 @@ const getThumbDate = (progress: number) => {
 
 const Index = () => {
   const didMountRef = useRef(false);
-  const [progress, setProgress] = useState(40);
+  const today = new Date().getDate();
 
-  const limit = 40;
+  const todayProgress = Math.round((today / 28) * 100);
+
+  const [progress, setProgress] = useState(todayProgress);
+
+  const limit = todayProgress;
 
   const isAmountNotAllowed = progress > limit;
 
@@ -38,7 +42,9 @@ const Index = () => {
           daysSlid={draggedDays}
           progress={progress}
           limit={limit}
+          currentMonth={"JUN"}
           onChange={setProgress}
+          notAvailToday={isAmountNotAllowed}
         />
       </View>
     </GestureHandlerRootView>
