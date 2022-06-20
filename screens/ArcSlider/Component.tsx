@@ -1,15 +1,25 @@
 import { StyleSheet, Text, View } from "react-native";
-import React, { useCallback } from "react";
-import Svg, { Defs, G, LinearGradient, Path, Stop } from "react-native-svg";
+import React, { useCallback, useEffect, useState } from "react";
+import Svg, {
+  Defs,
+  G,
+  LinearGradient,
+  Path,
+  Rect,
+  Stop,
+} from "react-native-svg";
 import Animated, {
   runOnJS,
   useAnimatedGestureHandler,
   useAnimatedProps,
+  useAnimatedReaction,
   useAnimatedStyle,
   useDerivedValue,
   useSharedValue,
   withDelay,
+  withSequence,
   withSpring,
+  withTiming,
 } from "react-native-reanimated";
 import {
   CENTER,
@@ -66,20 +76,37 @@ const Component = ({ progress, onChange, limit }: SliderProps) => {
     polar2Canvas({ theta: disabledStart.value, radius: R }, CENTER)
   );
 
-  //   const animatedThumb = useSharedValue(0 * Math.PI);
-  //   const animatedthumbPos = useDerivedValue(() =>
-  //     polar2Canvas({ theta: animatedThumb.value, radius: R }, CENTER)
+  // const animatedThumb = useSharedValue(getPosFromProgess(progress));
+  // const animatedthumbPos = useDerivedValue(() =>
+  //   polar2Canvas({ theta: animatedThumb.value, radius: R }, CENTER)
+  // );
+
+  // const animatedThumbI = useSharedValue(getPosFromProgess(progress / 2));
+  // const animatedthumbPosI = useDerivedValue(() =>
+  //   polar2Canvas({ theta: animatedThumbI.value, radius: R }, CENTER)
+  // );
+
+  // useEffect(() => {
+  //   translateX.value = withDelay(
+  //     300,
+  //     withSequence(
+  //       withTiming(animatedthumbPosI.value.x, { duration: 300 }),
+  //       withTiming(animatedthumbPos.value.x, { duration: 300 })
+  //     )
   //   );
+  //   translateY.value = withDelay(
+  //     300,
+  //     withSequence(
+  //       withTiming(animatedthumbPosI.value.y, { duration: 300 }),
+  //       withTiming(animatedthumbPos.value.y, { duration: 300 })
+  //     )
+  //   );
+  // }, []);
 
   //translation values
   const translateX = useSharedValue(thumbPos.value.x);
   const translateY = useSharedValue(thumbPos.value.y);
   const arcTheta = useSharedValue<number>(0);
-
-  //   useEffect(() => {
-  //     translateX.value = withDelay(300, withSpring(animatedthumbPos.value.x));
-  //     translateY.value = withDelay(300, withSpring(animatedthumbPos.value.y));
-  //   }, []);
 
   const handleCursorDrag = useAnimatedGestureHandler<
     PanGestureHandlerGestureEvent,
@@ -115,6 +142,7 @@ const Component = ({ progress, onChange, limit }: SliderProps) => {
   }, []);
 
   // normalize theta value for calculating %
+
   useDerivedValue(() => {
     if (
       arcTheta.value !== 0 &&
@@ -178,7 +206,7 @@ const Component = ({ progress, onChange, limit }: SliderProps) => {
       <Svg height={SIZE * 1.05} width={SIZE}>
         <G transform={"translate(0 10)"}>
           <Defs>
-            <LinearGradient id="grad" x1="0" y1="1" x2="1" y2="1">
+            <LinearGradient id="grad" x1="0" y1="0" x2="1" y2="1">
               <Stop offset="1" stopColor={"#27ABA7"} stopOpacity="1" />
               <Stop offset="0" stopColor={"#A3E3E3"} stopOpacity="1" />
             </LinearGradient>
@@ -210,7 +238,9 @@ const Component = ({ progress, onChange, limit }: SliderProps) => {
         </G>
       </Svg>
       <PanGestureHandler onGestureEvent={handleCursorDrag}>
-        <Animated.View style={[thumbStyle.view, cursorStyle]} />
+        <Animated.View style={[thumbStyle.view, cursorStyle]}>
+          <Text style={thumbStyle.text}>{progress}</Text>
+        </Animated.View>
       </PanGestureHandler>
     </View>
   );
@@ -227,5 +257,15 @@ const thumbStyle = StyleSheet.create({
     borderWidth: 2.5,
     borderColor: "#27ABA7",
     top: 10,
+    justifyContent: "center",
+    alignItems: "center",
+    shadowOpacity: 0.15,
+    shadowRadius: 5,
+    elevation: 2,
+  },
+  text: {
+    fontSize: 18,
+    fontWeight: "500",
+    color: "#9E9E9E",
   },
 });

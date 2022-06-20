@@ -5,7 +5,7 @@ import Component from "./Component";
 
 const Index = () => {
   const didMountRef = useRef(false);
-  const [progress, setProgress] = useState(35);
+  const [progress, setProgress] = useState(40);
 
   const limit = 40;
 
@@ -23,7 +23,7 @@ const Index = () => {
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
       <View style={styles.container}>
-        <Text style={{ marginBottom: 30 }}>{progress}</Text>
+        <Text style={{ marginBottom: 30 }}>{progress}%</Text>
         <Component progress={progress} limit={limit} onChange={setProgress} />
       </View>
     </GestureHandlerRootView>
