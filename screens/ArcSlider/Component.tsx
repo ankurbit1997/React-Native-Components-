@@ -1,25 +1,13 @@
 import { StyleSheet, Text, View } from "react-native";
-import React, { useCallback, useEffect, useState } from "react";
-import Svg, {
-  Defs,
-  G,
-  LinearGradient,
-  Path,
-  Rect,
-  Stop,
-} from "react-native-svg";
+import React, { useCallback } from "react";
+import Svg, { Defs, G, LinearGradient, Path, Stop } from "react-native-svg";
 import Animated, {
   runOnJS,
   useAnimatedGestureHandler,
   useAnimatedProps,
-  useAnimatedReaction,
   useAnimatedStyle,
   useDerivedValue,
   useSharedValue,
-  withDelay,
-  withSequence,
-  withSpring,
-  withTiming,
 } from "react-native-reanimated";
 import {
   CENTER,
@@ -47,20 +35,9 @@ type ContextType = {
 type SliderProps = {
   progress: number;
   onChange: React.Dispatch<React.SetStateAction<number>>;
-  limit: number;
-  daysSlid: number;
-  currentMonth: string;
-  notAvailToday: boolean;
 };
 
-const Component = ({
-  progress,
-  onChange,
-  limit,
-  daysSlid,
-  currentMonth,
-  notAvailToday,
-}: SliderProps) => {
+const Component = ({ progress, onChange }: SliderProps) => {
   //arc start and end value
   const start = useSharedValue(1.25 * Math.PI);
   const end = useSharedValue(1.75 * Math.PI);
@@ -81,38 +58,11 @@ const Component = ({
   );
 
   //thumb initial start value
-  const disabledStart = useSharedValue<number>(getPosFromProgess(limit));
-  //thumb initial start pos
-  const disabledStartPos = useDerivedValue(() =>
-    polar2Canvas({ theta: disabledStart.value, radius: R }, CENTER)
-  );
-
-  // const animatedThumb = useSharedValue(getPosFromProgess(progress));
-  // const animatedthumbPos = useDerivedValue(() =>
-  //   polar2Canvas({ theta: animatedThumb.value, radius: R }, CENTER)
+  // const disabledStart = useSharedValue<number>(getPosFromProgess(limit));
+  // //thumb initial start pos
+  // const disabledStartPos = useDerivedValue(() =>
+  //   polar2Canvas({ theta: disabledStart.value, radius: R }, CENTER)
   // );
-
-  // const animatedThumbI = useSharedValue(getPosFromProgess(progress / 2));
-  // const animatedthumbPosI = useDerivedValue(() =>
-  //   polar2Canvas({ theta: animatedThumbI.value, radius: R }, CENTER)
-  // );
-
-  // useEffect(() => {
-  //   translateX.value = withDelay(
-  //     300,
-  //     withSequence(
-  //       withTiming(animatedthumbPosI.value.x, { duration: 300 }),
-  //       withTiming(animatedthumbPos.value.x, { duration: 300 })
-  //     )
-  //   );
-  //   translateY.value = withDelay(
-  //     300,
-  //     withSequence(
-  //       withTiming(animatedthumbPosI.value.y, { duration: 300 }),
-  //       withTiming(animatedthumbPos.value.y, { duration: 300 })
-  //     )
-  //   );
-  // }, []);
 
   //translation values
   const translateX = useSharedValue(thumbPos.value.x);
@@ -181,26 +131,26 @@ const Component = ({
     };
   });
 
-  // animated props for disabled part
-  const animatedPropsDisabled = useAnimatedProps(() => {
-    return {
-      d: `M ${disabledStartPos.value.x} ${disabledStartPos.value.y} A ${R} ${R} 0 0 1 ${translateX.value} ${translateY.value} `,
-      strokeWidth: notAvailToday ? STROKE : 0,
-    };
-  });
+  // // animated props for disabled part
+  // const animatedPropsDisabled = useAnimatedProps(() => {
+  //   return {
+  //     d: `M ${disabledStartPos.value.x} ${disabledStartPos.value.y} A ${R} ${R} 0 0 1 ${translateX.value} ${translateY.value} `,
+  //     strokeWidth: notAvailToday ? STROKE : 0,
+  //   };
+  // });
 
   // partition start value
-  const partitionStart = useSharedValue<number>(
-    getPosFromProgess(limit - 0.27)
-  );
-  const partitionEnd = useSharedValue<number>(getPosFromProgess(limit + 0.27));
-  // partition startpos pos
-  const partitionStartPos = useDerivedValue(() =>
-    polar2Canvas({ theta: partitionStart.value, radius: R }, CENTER)
-  );
-  const partitionEndPos = useDerivedValue(() =>
-    polar2Canvas({ theta: partitionEnd.value, radius: R }, CENTER)
-  );
+  // const partitionStart = useSharedValue<number>(
+  //   getPosFromProgess(limit - 0.27)
+  // );
+  // const partitionEnd = useSharedValue<number>(getPosFromProgess(limit + 0.27));
+  // // partition startpos pos
+  // const partitionStartPos = useDerivedValue(() =>
+  //   polar2Canvas({ theta: partitionStart.value, radius: R }, CENTER)
+  // );
+  // const partitionEndPos = useDerivedValue(() =>
+  //   polar2Canvas({ theta: partitionEnd.value, radius: R }, CENTER)
+  // );
 
   const cursorStyle = useAnimatedStyle(() => {
     return {
@@ -231,27 +181,15 @@ const Component = ({
           />
           <AnimatedPath
             animatedProps={animatedProps}
-            stroke={"url(#grad)"}
+            stroke={"#AEBDCA"}
             strokeWidth={STROKE}
             strokeLinecap={"round"}
-          />
-          <AnimatedPath
-            animatedProps={animatedPropsDisabled}
-            stroke={"#9E9E9E"}
-            strokeLinecap={"butt"}
-          />
-          <AnimatedPath
-            stroke={progress > limit ? "#27ABA7" : "#ccc"}
-            strokeLinecap={"butt"}
-            strokeWidth={STROKE * 1.3}
-            d={`M ${partitionStartPos.value.x} ${partitionStartPos.value.y} A ${R} ${R} 1 0 1 ${partitionEndPos.value.x} ${partitionEndPos.value.y}`}
           />
         </G>
       </Svg>
       <PanGestureHandler onGestureEvent={handleCursorDrag}>
         <Animated.View style={[thumbStyle.view, cursorStyle]}>
-          <Text style={thumbStyle.subText}>{currentMonth}</Text>
-          <Text style={thumbStyle.text}>{daysSlid}</Text>
+          <Text style={thumbStyle.subText}>{progress}</Text>
         </Animated.View>
       </PanGestureHandler>
     </View>

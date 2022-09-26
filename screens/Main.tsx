@@ -26,6 +26,10 @@ const componentList: componentListType[] = [
     name: "Arc Slider",
     path: "arc-slider",
   },
+  {
+    name: "Card Flip",
+    path: "arc-slider",
+  },
 ];
 
 type MainScreenProps = NativeStackScreenProps<RootStackParamList, "Main">;
