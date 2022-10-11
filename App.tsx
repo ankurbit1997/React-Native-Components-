@@ -6,6 +6,7 @@ import Main from "./screens/Main";
 import { RootStackParamList } from "./types";
 import SwipeScreen from "./screens/SwipeButton";
 import ArcSliderScreen from "./screens/ArcSlider";
+import CardFlipScreen from "./screens/CardFlip";
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -27,6 +28,11 @@ export default function App() {
           options={{ title: "Arc Slider", headerBackTitleVisible: false }}
           name="arc-slider"
           component={ArcSliderScreen}
+        />
+        <Stack.Screen
+          options={{ title: "Card Flip", headerBackTitleVisible: false }}
+          name="card-flip"
+          component={CardFlipScreen}
         />
       </Stack.Navigator>
     </NavigationContainer>

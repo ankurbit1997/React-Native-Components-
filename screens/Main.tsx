@@ -27,8 +27,8 @@ const componentList: componentListType[] = [
     path: "arc-slider",
   },
   {
-    name: "Card Flip - WIP",
-    path: "arc-slider",
+    name: "Card Flip",
+    path: "card-flip",
   },
 ];
 

@@ -103,7 +103,9 @@ const Component = ({ onComplete }: ComponentProps) => {
           <AntDesign name="arrowright" size={22} color="#354259" />
         </Animated.View>
       </PanGestureHandler>
-      <Text style={styles.swipeText}>{"Swipe To Complete"}</Text>
+      <Text style={styles.swipeText}>
+        {!toggled ? "Swipe To Complete" : "Completed"}
+      </Text>
     </View>
   );
 };
