@@ -163,7 +163,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-around",
     alignItems: "center",
     padding: 16,
-    elevation: 4,
+    elevation: 2,
     zIndex: 400,
     shadowRadius: 7,
     shadowOffset: { height: -4, width: 0 },
