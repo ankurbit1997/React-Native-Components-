@@ -36,7 +36,7 @@ export default function App() {
           component={CardFlipScreen}
         />
         <Stack.Screen
-          options={{ title: "Card Flip", headerBackTitleVisible: false }}
+          options={{ title: "Product Card", headerBackTitleVisible: false }}
           name="perspective-card"
           component={PerspectiveCard}
         />

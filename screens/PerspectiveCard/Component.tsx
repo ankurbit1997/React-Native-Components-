@@ -6,24 +6,24 @@ import {
 import Animated, {
   Extrapolate,
   interpolate,
-  SensorType,
   useAnimatedGestureHandler,
-  useAnimatedSensor,
   useAnimatedStyle,
   useSharedValue,
   withSpring,
   withTiming,
 } from "react-native-reanimated";
+import { AntDesign } from "@expo/vector-icons";
 
 const Component = () => {
   //constants
-  const CARD_HEIGHT = 320;
+  const CARD_HEIGHT = 360;
   const CARD_WIDTH = 220;
 
-  //shared Values
+  //shared Values for card
   const rotateX = useSharedValue(0);
   const rotateY = useSharedValue(0);
 
+  //shared Values for images
   const translateX = useSharedValue(0);
   const translateY = useSharedValue(0);
   const scale = useSharedValue(1);
@@ -48,7 +48,7 @@ const Component = () => {
       marginBottom: -10,
       zIndex: 300,
       transform: [
-        { perspective: 500 },
+        { perspective: 800 },
         { scale: scale.value },
         { translateX: translateX.value },
         { translateY: translateY.value },
@@ -143,6 +143,11 @@ const Component = () => {
               bread roll (pav). Its origins are in the state of Maharashtra.
             </Text>
           </View>
+          <View style={styles.ctaContainer}>
+            <View style={styles.addCta}>
+              <Text style={{ fontSize: 12, color: "white" }}>Add To Cart</Text>
+            </View>
+          </View>
         </Animated.View>
       </PanGestureHandler>
     </View>
@@ -155,7 +160,7 @@ const styles = StyleSheet.create({
   card: {
     borderRadius: 16,
     backgroundColor: "#F5EBE0",
-    justifyContent: "center",
+    justifyContent: "space-around",
     alignItems: "center",
     padding: 16,
     elevation: 4,
@@ -169,7 +174,6 @@ const styles = StyleSheet.create({
     aspectRatio: 1,
     resizeMode: "contain",
     zIndex: 450,
-    // transform: [{ rotateX: "15deg" }, { perspective: 500 }],
   },
   desc: {
     fontSize: 12,
@@ -178,5 +182,18 @@ const styles = StyleSheet.create({
     fontSize: 16,
     textTransform: "uppercase",
     textAlign: "center",
+  },
+  ctaContainer: {
+    flexDirection: "row",
+    marginTop: 10,
+  },
+
+  addCta: {
+    backgroundColor: "black",
+    borderRadius: 8,
+    width: "80%",
+    height: 24,
+    justifyContent: "center",
+    alignItems: "center",
   },
 });
