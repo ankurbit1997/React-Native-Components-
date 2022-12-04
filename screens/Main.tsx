@@ -30,6 +30,10 @@ const componentList: componentListType[] = [
     name: "Card Flip",
     path: "card-flip",
   },
+  {
+    name: "Perspective Card",
+    path: "perspective-card",
+  },
 ];
 
 type MainScreenProps = NativeStackScreenProps<RootStackParamList, "Main">;

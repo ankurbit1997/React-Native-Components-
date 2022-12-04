@@ -65,7 +65,6 @@ const Styles = StyleSheet.create({
     position: "absolute",
     alignItems: "center",
     justifyContent: "center",
-    backfaceVisibility: "hidden",
   },
   back: {
     height: 400,

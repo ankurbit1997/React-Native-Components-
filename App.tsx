@@ -7,6 +7,7 @@ import { RootStackParamList } from "./types";
 import SwipeScreen from "./screens/SwipeButton";
 import ArcSliderScreen from "./screens/ArcSlider";
 import CardFlipScreen from "./screens/CardFlip";
+import PerspectiveCard from "./screens/PerspectiveCard";
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -33,6 +34,11 @@ export default function App() {
           options={{ title: "Card Flip", headerBackTitleVisible: false }}
           name="card-flip"
           component={CardFlipScreen}
+        />
+        <Stack.Screen
+          options={{ title: "Card Flip", headerBackTitleVisible: false }}
+          name="perspective-card"
+          component={PerspectiveCard}
         />
       </Stack.Navigator>
     </NavigationContainer>

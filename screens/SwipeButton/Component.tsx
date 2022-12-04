@@ -69,12 +69,12 @@ const Component = ({ onComplete }: ComponentProps) => {
       }
     },
 
-    onFinish: () => {
+    onEnd: () => {
       if (translationX.value < CONTAINER_WIDTH / 2 - SWIPEABLE_DIMENSIONS / 2) {
-        translationX.value = withSpring(0);
+        translationX.value = withTiming(0);
         runOnJS(handleComplete)(false);
       } else {
-        translationX.value = withSpring(H_SWIPE_RANGE);
+        translationX.value = withTiming(H_SWIPE_RANGE);
         runOnJS(handleComplete)(true);
       }
     },

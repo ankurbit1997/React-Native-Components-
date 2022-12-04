@@ -3,4 +3,5 @@ export type RootStackParamList = {
   "swipe-button": undefined;
   "arc-slider": undefined;
   "card-flip": undefined;
+  "perspective-card": undefined;
 };
