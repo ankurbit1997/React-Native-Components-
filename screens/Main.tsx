@@ -18,18 +18,18 @@ interface componentListType {
 }
 
 const componentList: componentListType[] = [
-  // {
-  //   name: "Swipe Button",
-  //   path: "swipe-button",
-  // },
-  // {
-  //   name: "Arc Slider",
-  //   path: "arc-slider",
-  // },
-  // {
-  //   name: "Card Flip",
-  //   path: "card-flip",
-  // },
+  {
+    name: "Swipe Button",
+    path: "swipe-button",
+  },
+  {
+    name: "Arc Slider",
+    path: "arc-slider",
+  },
+  {
+    name: "Card Flip",
+    path: "card-flip",
+  },
   {
     name: "Perspective Card",
     path: "perspective-card",

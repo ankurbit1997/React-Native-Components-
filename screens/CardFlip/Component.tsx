@@ -74,5 +74,6 @@ const Styles = StyleSheet.create({
     backfaceVisibility: "hidden",
     alignItems: "center",
     justifyContent: "center",
+    zIndex: 10,
   },
 });
