@@ -34,6 +34,10 @@ const componentList: componentListType[] = [
     name: "Perspective Card",
     path: "perspective-card",
   },
+  {
+    name: "Animated Sensor Example",
+    path: "animated-sensor",
+  },
 ];
 
 type MainScreenProps = NativeStackScreenProps<RootStackParamList, "Main">;

@@ -8,6 +8,7 @@ import SwipeScreen from "./screens/SwipeButton";
 import ArcSliderScreen from "./screens/ArcSlider";
 import CardFlipScreen from "./screens/CardFlip";
 import PerspectiveCard from "./screens/PerspectiveCard";
+import AnimatedSensorScreen from "./screens/AnimatedSensor";
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -39,6 +40,11 @@ export default function App() {
           options={{ title: "Product Card", headerBackTitleVisible: false }}
           name="perspective-card"
           component={PerspectiveCard}
+        />
+        <Stack.Screen
+          options={{ title: "Animated Sensor", headerBackTitleVisible: false }}
+          name="animated-sensor"
+          component={AnimatedSensorScreen}
         />
       </Stack.Navigator>
     </NavigationContainer>

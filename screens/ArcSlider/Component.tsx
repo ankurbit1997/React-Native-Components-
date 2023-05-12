@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View } from "react-native";
-import React, { useCallback } from "react";
+import React, { useCallback, useEffect } from "react";
 import Svg, { Defs, G, LinearGradient, Path, Stop } from "react-native-svg";
 import Animated, {
   runOnJS,
