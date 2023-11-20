@@ -35,8 +35,8 @@ const componentList: componentListType[] = [
     path: "perspective-card",
   },
   {
-    name: "Animated Sensor Example",
-    path: "animated-sensor",
+    name: "Carousel",
+    path: "card-carousel",
   },
 ];
 

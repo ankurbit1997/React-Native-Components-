@@ -42,8 +42,11 @@ export default function App() {
           component={PerspectiveCard}
         />
         <Stack.Screen
-          options={{ title: "Animated Sensor", headerBackTitleVisible: false }}
-          name="animated-sensor"
+          options={{
+            title: "Carousel",
+            headerBackTitleVisible: false,
+          }}
+          name="card-carousel"
           component={AnimatedSensorScreen}
         />
       </Stack.Navigator>
