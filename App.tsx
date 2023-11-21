@@ -41,14 +41,14 @@ export default function App() {
           name="perspective-card"
           component={PerspectiveCard}
         />
-        <Stack.Screen
+        {/* <Stack.Screen
           options={{
             title: "Carousel",
             headerBackTitleVisible: false,
           }}
           name="card-carousel"
           component={AnimatedSensorScreen}
-        />
+        /> */}
       </Stack.Navigator>
     </NavigationContainer>
   );

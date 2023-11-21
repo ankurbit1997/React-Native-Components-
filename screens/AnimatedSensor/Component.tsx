@@ -21,17 +21,17 @@ const data = [
   {
     name: "Pizza",
     id: 1,
-    image: require("../../assets/images/egg.jpg"),
+    image: require("../../assets/images/pav-bhaji.jpg"),
   },
   {
     name: "Burger",
     id: 2,
-    image: require("../../assets/images/bread.jpg"),
+    image: require("../../assets/images/pav-bhaji.jpg"),
   },
   {
     name: "Sushi",
     id: 3,
-    image: require("../../assets/images/pancake.jpg"),
+    image: require("../../assets/images/pav-bhaji.jpg"),
   },
 ];
 
