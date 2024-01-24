@@ -57,13 +57,6 @@ const Component = ({ progress, onChange }: SliderProps) => {
     polar2Canvas({ theta: startThumb.value, radius: R }, CENTER)
   );
 
-  //thumb initial start value
-  // const disabledStart = useSharedValue<number>(getPosFromProgess(limit));
-  // //thumb initial start pos
-  // const disabledStartPos = useDerivedValue(() =>
-  //   polar2Canvas({ theta: disabledStart.value, radius: R }, CENTER)
-  // );
-
   //translation values
   const translateX = useSharedValue(thumbPos.value.x);
   const translateY = useSharedValue(thumbPos.value.y);
@@ -178,12 +171,14 @@ const Component = ({ progress, onChange }: SliderProps) => {
             d={`M ${startPos.value.x} ${startPos.value.y} A ${R} ${R} 1 1 1 ${endPos.value.x} ${endPos.value.y} `}
             strokeLinecap={"round"}
             strokeWidth={STROKE}
+            fill={"none"}
           />
           <AnimatedPath
             animatedProps={animatedProps}
             stroke={"#AEBDCA"}
             strokeWidth={STROKE}
             strokeLinecap={"round"}
+            fill={"none"}
           />
         </G>
       </Svg>

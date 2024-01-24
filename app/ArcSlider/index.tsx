@@ -1,13 +1,16 @@
 import { StyleSheet, Text, View } from "react-native";
 import React, { useState } from "react";
-import Component from "./Component";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
+import Component from "./Component";
 
 const Index = () => {
+  const [progress, setProgress] = useState(20);
+
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
       <View style={styles.container}>
-        <Component />
+        <Text>{progress}</Text>
+        <Component progress={progress} onChange={setProgress} />
       </View>
     </GestureHandlerRootView>
   );
@@ -18,8 +21,7 @@ export default Index;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: "center",
     justifyContent: "center",
-    padding: 30,
+    alignItems: "center",
   },
 });
