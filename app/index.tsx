@@ -28,8 +28,8 @@ const componentList: componentListType[] = [
     path: "PerspectiveCard",
   },
   {
-    name: "Range Slider",
-    path: "RangeSlider",
+    name: "Balance Slider",
+    path: "BalanceSlider",
   },
 ];
 
